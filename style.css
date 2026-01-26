@@ -36,3 +36,262 @@
     font-family: Arial, sans-serif;
     color: white;
 }
+
+/* =============================== */
+/* REALISTIC CURTAIN (IMAGE BASED) */
+/* =============================== */
+
+#curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* Panels */
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+
+  /* Real texture */
+  background-image: url("assets/images/curtain_texture.png");
+  background-size: cover;
+  background-position: center;
+
+  /* Depth + velvet shading */
+  box-shadow:
+    inset 0 0 160px rgba(0,0,0,0.70),
+    inset 0 0 40px rgba(0,0,0,0.45);
+
+  /* More realistic motion */
+  transition:
+    transform 1600ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    filter 1600ms cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  will-change: transform;
+}
+
+/* Left */
+.curtain-panel.left {
+  left: 0;
+
+  /* Make the inner edge darker (thick fabric feel) */
+  background-position: left center;
+}
+
+/* Right (mirror texture so it “matches” left) */
+.curtain-panel.right {
+  right: 0;
+
+  /* Mirror the image so folds feel symmetrical */
+  transform: scaleX(-1);
+  background-position: left center;
+}
+
+/* Add edge thickness shading (like a heavy curtain) */
+.curtain-panel.left::after,
+.curtain-panel.right::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.curtain-panel.left::after {
+  background: linear-gradient(to right, rgba(0,0,0,0.55), transparent 45%);
+}
+
+.curtain-panel.right::after {
+  background: linear-gradient(to left, rgba(0,0,0,0.55), transparent 45%);
+}
+
+/* Center seam + slight highlight */
+#curtain::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 14px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right,
+    rgba(0,0,0,0.75),
+    rgba(255,255,255,0.10),
+    rgba(0,0,0,0.75)
+  );
+  opacity: 0.85;
+  pointer-events: none;
+
+  transition: opacity 250ms ease;
+}
+
+#curtain.pull::before,
+#curtain.open::before {
+  opacity: 0;
+}
+
+/* REALISTIC OPEN: a little “pull” first (handled by JS class) */
+#curtain.pull .curtain-panel.left {
+  transform: translateX(-3%);
+}
+#curtain.pull .curtain-panel.right {
+  transform: translateX(3%) scaleX(-1);
+}
+
+/* Then open wide */
+#curtain.open .curtain-panel.left {
+  transform: translateX(-120%);
+  filter: brightness(0.95);
+}
+
+#curtain.open .curtain-panel.right {
+  transform: translateX(120%) scaleX(-1);
+  filter: brightness(0.95);
+}
+
+
+
+
+
+/* ===================================== */
+/* CINEMATIC TITLE OVER CURTAIN (ADD)     */
+/* ===================================== */
+
+.curtain-title-wrap {
+  position: absolute;
+  left: 50%;
+  top: 22%;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none; /* clicks still open curtain */
+  z-index: 10000;
+}
+
+/* Main title */
+.curtain-title {
+  margin: 0;
+  font-family: "Cinzel", serif; /* replace with a cinematic font later */
+  font-size: clamp(42px, 6vw, 92px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 245, 235, 0.92);
+
+  /* cinematic glow + depth */
+  text-shadow:
+    0 2px 18px rgba(0,0,0,0.55),
+    0 0 26px rgba(255, 220, 150, 0.12);
+
+  /* animation */
+  animation: titleFloat 6s ease-in-out infinite,
+             titleFlicker 4.5s steps(1) infinite;
+}
+
+/* Subtitle */
+.curtain-subtitle {
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+  animation: subtitlePulse 2.2s ease-in-out infinite;
+}
+
+/* Float */
+@keyframes titleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* Tiny “old projector / candle flicker” */
+@keyframes titleFlicker {
+  0%   { opacity: 0.95; }
+  6%   { opacity: 0.85; }
+  8%   { opacity: 0.98; }
+  22%  { opacity: 0.92; }
+  26%  { opacity: 0.75; }
+  28%  { opacity: 0.97; }
+  68%  { opacity: 0.9; }
+  72%  { opacity: 0.78; }
+  74%  { opacity: 0.96; }
+  100% { opacity: 0.94; }
+}
+
+@keyframes subtitlePulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.9; }
+}
+
+/* When opening, fade the text out quickly */
+#curtain.pull .curtain-title-wrap,
+#curtain.open .curtain-title-wrap {
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+
+/* =============================== */
+/* WELCOME TITLE (FADES IN)       */
+/* =============================== */
+
+#welcome-title {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-family: "Cinzel", serif;
+  font-size: clamp(22px, 3vw, 48px);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+
+  white-space: nowrap; /* prevents wrapping */
+
+  color: rgba(255, 214, 140, 0.95);
+
+  text-shadow:
+    0 0 10px rgba(255, 190, 90, 0.35),
+    0 0 22px rgba(255, 170, 60, 0.25),
+    0 0 40px rgba(255, 140, 40, 0.18),
+    0 8px 22px rgba(0, 0, 0, 0.65);
+
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+
+  transition: opacity 7000ms ease; /* slower fade */
+}
+
+#curtain.open ~ #welcome-title {
+  opacity: 1;
+}
+
+#muteBtn {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.35);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 99999;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+
+#muteBtn:hover {
+  background: rgba(0,0,0,0.55);
+  transform: scale(1.05);
+}
+
+#muteBtn:active {
+  transform: scale(0.95);
+}
