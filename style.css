@@ -1,0 +1,38 @@
+/* Reset default browser spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fixed background layer */
+#background {
+    position: fixed;
+    inset: 0;
+
+    background-image: url("assets/images/somniphant_circus.png");
+    background-size: cover;
+    background-position: center;
+
+    z-index: -2;
+}
+
+/* Dark overlay on background */
+#background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+}
+
+/* Main app container (scrolls on top) */
+#app {
+    position: relative;
+    z-index: 1;
+
+    min-height: 200vh; /* just to prove scrolling */
+    padding: 40px;
+
+    font-family: Arial, sans-serif;
+    color: white;
+}
