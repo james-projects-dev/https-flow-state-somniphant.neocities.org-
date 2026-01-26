@@ -8,24 +8,26 @@
 
     <title>My Website</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- Link to your CSS file -->
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
+    <!-- CURTAIN (PASTE THIS BLOCK) -->
+    <div id="curtain" role="button" tabindex="0" aria-label="Open curtain">
+      <div class="curtain-panel left"></div>
+      <div class="curtain-panel right"></div>
+    </div>
+
+    <!-- Your existing background -->
     <div id="background"></div>
 
     <!-- Main container -->
     <div id="app">
       <h1>My Website</h1>
-
       <p>This is a blank skeleton.</p>
     </div>
 
-    <!-- Link to your JavaScript file -->
     <script src="script.js"></script>
   </body>
 </html>
