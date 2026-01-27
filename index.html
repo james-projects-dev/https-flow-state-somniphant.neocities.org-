@@ -8,24 +8,46 @@
 
     <title>My Website</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Link to your CSS file -->
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div id="background"></div>
+    <!-- CURTAIN (PASTE THIS BLOCK) -->
+    <div id="curtain" role="button" tabindex="0" aria-label="Open curtain">
+      <div class="curtain-panel left"></div>
+      <div class="curtain-panel right"></div>
+
+      <!-- CINEMATIC TITLE (ADD THIS) -->
+      <div class="curtain-title-wrap" aria-hidden="true">
+        <h1 class="curtain-title">SOMNIPHANT</h1>
+        <div class="curtain-subtitle">Click to enter</div>
+      </div>
+    </div>
+
+    <!-- CINEMATIC WELCOME (ADD THIS) -->
+    <div id="welcome-title">WELCOME TO THE SHOW</div>
+
+    <!-- Your existing background -->
+    <div id="background">
+      <img id="jesterFlash" src="assets/images/ani 11.png" alt="" />
+      <img id="girl" src="assets/images/girl_asset.png" alt="" />
+    </div>
 
     <!-- Main container -->
     <div id="app">
-      <h1>My Website</h1>
-
-      <p>This is a blank skeleton.</p>
+      <h1>COMING SOON!</h1>
     </div>
 
-    <!-- Link to your JavaScript file -->
     <script src="script.js"></script>
+
+    <button id="muteBtn" aria-label="Toggle sound">🔊</button>
   </body>
 </html>
