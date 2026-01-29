@@ -2,30 +2,63 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <!-- Makes your site scale properly on mobile -->
+    <meta property="og:image" content="assets/textures/curtain_texture.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>My Website</title>
+    <title>UNDER CONSTRUCTION</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts (clean) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Ewert&family=Rye&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- Link to your CSS file -->
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
-    <div id="background"></div>
+  <body class="page-home">
+    <!-- CURTAIN -->
+    <div id="curtain" role="button" tabindex="0" aria-label="Open curtain">
+      <div class="curtain-panel left"></div>
+      <div class="curtain-panel right"></div>
 
-    <!-- Main container -->
-    <div id="app">
-      <h1>My Website</h1>
-
-      <p>This is a blank skeleton.</p>
+      <div class="curtain-title-wrap" aria-hidden="true">
+        <h1 class="curtain-title">SOMNIPHANT</h1>
+        <div class="curtain-subtitle">Click to enter</div>
+      </div>
     </div>
 
-    <!-- Link to your JavaScript file -->
+    <!-- WELCOME -->
+    <div id="welcome-title">WELCOME TO THE SHOW</div>
+
+    <!-- NAV -->
+    <nav id="marqueeNav" aria-label="Main navigation">
+      <a class="marqueeBtn" href="#home" data-label="Home">Home</a>
+      <a class="marqueeBtn" href="404.html" data-label="About">About</a>
+      <a class="marqueeBtn" href="404.html" data-label="Music">Music</a>
+      <a class="marqueeBtn" href="404.html" data-label="Blog">Blog</a>
+      <a class="marqueeBtn" href="404.html" data-label="Gallery">Gallery</a>
+    </nav>
+
+    <!-- Background layer -->
+    <div id="background">
+      <img id="jesterFlash" src="assets/images/ani 11.webp" alt="" />
+      <img id="girl" src="assets/images/girl_asset.png" alt="" />
+    </div>
+
+    <!-- Charge overlay -->
+    <div id="chargeOverlay" aria-hidden="true">
+      <img id="chargeFrame" src="assets/images/charge/frame1.webp" alt="" />
+    </div>
+
+    <div id="app">
+      <h1></h1>
+    </div>
+
+    <button id="muteBtn" aria-label="Toggle sound">🔊</button>
+
     <script src="script.js"></script>
   </body>
 </html>
