@@ -2,30 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta property="og:image" content="assets/textures/curtain_texture.webp" />
 
     <!-- Makes your site scale properly on mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>My Website</title>
+    <title>UNDER CONSTRUCTION</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Ewert&family=Rye&display=swap"
+      rel="stylesheet"
+    />
+    />
 
     <!-- Link to your CSS file -->
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div id="background"></div>
+    <!-- CURTAIN (PASTE THIS BLOCK) -->
+    <div id="curtain" role="button" tabindex="0" aria-label="Open curtain">
+      <div class="curtain-panel left"></div>
+      <div class="curtain-panel right"></div>
+
+      <!-- CINEMATIC TITLE (ADD THIS) -->
+      <div class="curtain-title-wrap" aria-hidden="true">
+        <h1 class="curtain-title">SOMNIPHANT</h1>
+        <div class="curtain-subtitle">Click to enter</div>
+      </div>
+    </div>
+
+    <!-- CINEMATIC WELCOME (ADD THIS) -->
+    <div id="welcome-title">WELCOME TO THE SHOW</div>
+
+    <!-- MARQUEE NAV (hidden until curtain opens) -->
+    <nav id="marqueeNav" aria-label="Main navigation">
+      <a class="marqueeBtn" href="404.html" data-label="Home">Home</a>
+      <a class="marqueeBtn" href="404.html" data-label="About">About</a>
+      <a class="marqueeBtn" href="404.html" data-label="Music">Music</a>
+      <a class="marqueeBtn" href="404.html" data-label="Blog">Blog</a>
+      <a class="marqueeBtn" href="404.html" data-label="Gallery">Gallery</a>
+    </nav>
+
+    <!-- Your existing background -->
+    <div id="background">
+      <img id="jesterFlash" src="assets/images/ani 11.webp" alt="" />
+      <img id="girl" src="assets/images/girl_asset.png" alt="" />
+    </div>
+
+    <!-- CHARGING FACE OVERLAY (animation frames) -->
+    <div id="chargeOverlay" aria-hidden="true">
+      <img id="chargeFrame" src="assets/images/charge/frame1.webp" alt="" />
+    </div>
 
     <!-- Main container -->
     <div id="app">
-      <h1>My Website</h1>
-
-      <p>This is a blank skeleton.</p>
+      <h1></h1>
     </div>
 
-    <!-- Link to your JavaScript file -->
     <script src="script.js"></script>
+
+    <button id="muteBtn" aria-label="Toggle sound">🔊</button>
   </body>
 </html>
