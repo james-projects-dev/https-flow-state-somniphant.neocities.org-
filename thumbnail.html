@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thumbnail</title>
+
+    <!-- Same font as your curtain title -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Keep this page dead-simple & stable for the screenshot bot */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #000;
+        overflow: hidden;
+      }
+
+      /* Full-screen curtain container */
+      #curtain {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .curtain-panel {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
+
+        background-image: url("assets/textures/curtain_texture.webp");
+        background-size: cover;
+        background-position: center;
+
+        box-shadow:
+          inset 0 0 160px rgba(0, 0, 0, 0.7),
+          inset 0 0 40px rgba(0, 0, 0, 0.45);
+      }
+
+      .curtain-panel.left {
+        left: 0;
+        background-position: left center;
+      }
+
+      /* Right side mirrors the same texture like your main site */
+      .curtain-panel.right {
+        right: 0;
+        transform: scaleX(-1);
+        background-position: left center;
+      }
+
+      /* Center seam */
+      #curtain::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 14px;
+        height: 100%;
+        transform: translateX(-50%);
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.75),
+          rgba(255, 255, 255, 0.1),
+          rgba(0, 0, 0, 0.75)
+        );
+        opacity: 0.85;
+        pointer-events: none;
+      }
+
+      /* Title overlay (static so the thumbnail is consistent) */
+      .curtain-title-wrap {
+        position: absolute;
+        left: 50%;
+        top: 22%;
+        transform: translateX(-50%);
+        text-align: center;
+        pointer-events: none;
+        z-index: 20;
+      }
+
+      .curtain-title {
+        margin: 0;
+        font-family: "Cinzel", serif;
+        font-weight: 700;
+        font-size: clamp(46px, 6vw, 96px);
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 245, 235, 0.92);
+        text-shadow:
+          0 2px 18px rgba(0, 0, 0, 0.55),
+          0 0 26px rgba(255, 220, 150, 0.12);
+      }
+
+      .curtain-subtitle {
+        margin-top: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.75);
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="curtain">
+      <div class="curtain-panel left"></div>
+      <div class="curtain-panel right"></div>
+
+      <div class="curtain-title-wrap">
+        <h1 class="curtain-title">SOMNIPHANT</h1>
+        <div class="curtain-subtitle">Click to enter</div>
+      </div>
+    </div>
+  </body>
+</html>
